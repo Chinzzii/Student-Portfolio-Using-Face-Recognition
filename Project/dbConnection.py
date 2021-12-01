@@ -2,6 +2,7 @@ from logging import exception
 from logging import error
 import mysql.connector as myc
 from mysql.connector.errors import Error
+from random import choice
 
 # IF WANT TO MODIFY THE DATABASE NAME CHANGE IT HERE AS WELL AS IN THE SQL FILE
 database_name = "STUDENT_PORTFOLIO_DATABASE"
@@ -29,19 +30,25 @@ All User Actions are defined in this class'''
             cquery = f'select id from {User.student_table}'
             self.student_cursor.execute(cquery)
             usedIds = {i[0] for i in self.student_cursor.fetchall()}
+            User.total_users = len(usedIds)
 
         except Exception as e : print(e)
+        except NoCursorFound : print('Insert a Cursor')
 
-        #print(usedIds)
+        print(usedIds)
 
-        User.total_users = len(usedIds)
+        allIds = set([i for i in range(10)])
+        availableIds = allIds.difference(usedIds)
+
+        print(availableIds)
+        
         #print('TOTAL USERS = ',User.total_users)
 
 
         if id :
             self.id = id
         else : 
-            self.id = User.total_users + 1
+            self.id = choice(list(availableIds))
             
         
 

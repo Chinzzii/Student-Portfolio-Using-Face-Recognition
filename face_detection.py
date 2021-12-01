@@ -6,8 +6,13 @@ mp_drawing_styles = mp.solutions.drawing_styles
 mp_face_mesh = mp.solutions.face_mesh
 
 
-drawing_spec = mp_drawing.DrawingSpec(thickness=3, circle_radius=3)
+drawing_spec = mp_drawing.DrawingSpec(thickness=1, circle_radius=1)
+
 cap = cv2.VideoCapture(0)
+
+# cap = cv2.VideoCapture(
+#     r"E:\\movies\\Shang-Chi And The Legend Of The Ten Rings (2021) [1080p] [BluRay] [5.1] [YTS.MX]\\Shang-Chi.And.The.Legend.Of.The.Ten.Rings.2021.1080p.BluRay.x264.AAC5.1-[YTS.MX].mp4"
+# )
 
 # cap = cv2.VideoCapture(
 #     r"E:\\movies\\Red Notice (2021) [1080p] [WEBRip] [5.1] [YTS.MX]\\Red.Notice.2021.1080p.WEBRip.x264.AAC5.1-[YTS.MX].mp4"
@@ -57,13 +62,13 @@ with mp_face_mesh.FaceMesh(
                 #     landmark_drawing_spec=None,
                 #     connection_drawing_spec=mp_drawing_styles.get_default_face_mesh_tesselation_style(),
                 # )
-                # mp_drawing.draw_landmarks(
-                #     image=image,
-                #     landmark_list=face_landmarks,
-                #     connections=mp_face_mesh.FACEMESH_CONTOURS,
-                #     landmark_drawing_spec=None,
-                #     connection_drawing_spec=mp_drawing_styles.get_default_face_mesh_contours_style(),
-                # )
+                mp_drawing.draw_landmarks(
+                    image=image,
+                    landmark_list=face_landmarks,
+                    connections=mp_face_mesh.FACEMESH_CONTOURS,
+                    landmark_drawing_spec=None,
+                    connection_drawing_spec=mp_drawing_styles.get_default_face_mesh_contours_style(),
+                )
                 # mp_drawing.draw_landmarks(
                 #     image=image,
                 #     landmark_list=face_landmarks,

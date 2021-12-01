@@ -112,13 +112,14 @@ class FaceRecognition :
             
                     if name in self.classNames :
                         #disInfo(name)
+                        cap.release()
                         return name
                 
             cv2.imshow('Webcam',img)
             cv2.waitKey(1)
 
 
-        cap.release()
+        
 
 if __name__ == "__main__" : 
     
